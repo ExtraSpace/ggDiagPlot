@@ -1,6 +1,11 @@
-# Playing with ggplot2
-Raju Rimal  
-16 Nov 2014  
+---
+title: "Playing with ggplot2"
+author: "Raju Rimal"
+date: "16 Nov 2014"
+output:
+  html_document:
+    keep_md: yes
+---
 
 
 Diagnostic Plots
@@ -9,8 +14,7 @@ Diagnostic Plots
 I have tried to use fortify function in ```ggplot2``` which can access different statistics related to linear model. The basic diagnostic plot which we often get using plot function in the fitted model using ```lm``` command.
 
 The function ```diagPlots``` gives an list of six different plots which can be arranged in a grid using ```grid``` and ```gridExtra``` packages.
-
-```r
+```{r results='hide', message=FALSE, warning=FALSE}
 require(ggplot2)
 diagPlot<-function(model){
     p1<-ggplot(model, aes(.fitted, .resid))+geom_point()
@@ -50,24 +54,19 @@ diagPlot<-function(model){
 
 Using the ```mtcars``` datasets, a linear model is fitted with mpg as response and cyl, disp, hp, drat and wt has predictor variable
 
-
-```r
+```{r}
 lm.model<-lm(mpg~cyl+disp+hp+drat+wt, data=mtcars)
 diagPlts<-diagPlot(lm.model)
 ```
 
 To display the plots in a grid, some packages mentioned above should be installed.
 
-
-```r
+```{r, results='hide', warning=FALSE, message=FALSE}
 lbry<-c("grid", "gridExtra")
 lapply(lbry, require, character.only=TRUE, warn.conflicts = FALSE, quietly = TRUE)
 ```
 Thus the plot obtained is,
 
-
-```r
+```{r}
 do.call(grid.arrange, c(diagPlts, main="Diagnostic Plots", ncol=3))
 ```
-
-![plot of chunk unnamed-chunk-4](./README_files/figure-html/unnamed-chunk-4.png) 
