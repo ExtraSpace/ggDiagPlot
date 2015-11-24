@@ -1,4 +1,4 @@
-# Playing with ggplot2
+# Diagnostic Plots for Linear Model using ```ggplot2```
 Raju Rimal  
 16 Nov 2014  
 
